@@ -26,7 +26,45 @@ int main() {
     */
     //----------------------------------------------------------------//
     {
+        for (i = 0; i < n1; i++)
+        {
+            int foundInB = 0;
+            int inRes = 0;
 
+            for(j = 0; j < n2; j++) //checks if a[i] is in B
+            {
+                if (set1[i] == set2[j]) 
+                {
+                    foundInB = 1; 
+                    break; 
+                }
+            }
+
+            for (k = 0; k < count;k++) //checks if the element is already in the final result
+            {    
+                if (intersection[k] == set1[i])
+                {
+                    inRes = 1; 
+                    break;
+                }  
+            }
+
+            if (foundInB && !inRes) intersection[count++] = set1[i]; //adds unique intersection to the final set
+        }
+
+        //BubbleSort
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = i+1; j < count; j++)
+            {
+                if(intersection[i] > intersection[j])
+                {
+                    int temp = intersection[i];
+                    intersection[i] = intersection[j];
+                    intersection[j] = temp;
+                }
+            }
+        }
     }
     //----------------------------------------------------------------//
     for(i = 0; i < count; i++) {
